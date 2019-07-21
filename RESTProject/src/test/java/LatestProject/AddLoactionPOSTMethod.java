@@ -34,7 +34,8 @@ public class AddLoactionPOSTMethod {
 "}").
 		when().
 		post("/maps/api/place/add/json").
-		then().assertThat().statusCode(200).and().contentType(ContentType.JSON).and().
+		then().
+		assertThat().statusCode(200).and().contentType(ContentType.JSON).and().
 		body("status",equalTo("OK"));
 		
 	}

@@ -1,4 +1,4 @@
-package LatestProject;
+  package LatestProject;
 
 import org.testng.annotations.Test;
 
