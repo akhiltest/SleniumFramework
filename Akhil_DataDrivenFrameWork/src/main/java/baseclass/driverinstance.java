@@ -24,25 +24,31 @@ public class driverinstance {
 	(since fetchpropertyvalue() method will be returning only object) and then comparing*/
 		if(utilityPackage.utilityFetchproperty.fetchpropertyvalue("browserName").toString().equalsIgnoreCase("chrome"))
 		{
-			System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
-			
-		driver=new ChromeDriver();
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--disable-popup-blocking");
+			driver = new ChromeDriver(options);
+		
 		}
 		
-		else if(utilityPackage.utilityFetchproperty.fetchpropertyvalue("browserName").toString().equalsIgnoreCase("chrome"))
+		else if(utilityPackage.utilityFetchproperty.fetchpropertyvalue("browserName").toString().equalsIgnoreCase("firefox"))
 		{
+			WebDriverManager.firefoxdriver().setup();
 			driver= new FirefoxDriver();
-			System.setProperty("webdriver.gecko.driver", "./driver/geckodriver.exe");
+			
 		}
-		else if(utilityPackage.utilityFetchproperty.fetchpropertyvalue("browserName").toString().equalsIgnoreCase("chrome"))
+		else if(utilityPackage.utilityFetchproperty.fetchpropertyvalue("browserName").toString().equalsIgnoreCase("IE"))
 		{
 			driver=new InternetExplorerDriver();
 		}
 		//if incorrect or nothing is mentioned it will create Chrome driver object
 		else
 		{
-			driver=new ChromeDriver();
-			System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--disable-popup-blocking");
+			driver = new ChromeDriver(options);
+		
 		}
 		driver.get(utilityPackage.utilityFetchproperty.fetchpropertyvalue("URL").toString());
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
